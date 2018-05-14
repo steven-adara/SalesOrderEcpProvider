@@ -21,10 +21,9 @@ namespace Kfzteile24.SalesOrderEcpProvider.Controllers
         private readonly IHealthCheckService healthCheckService;
         private readonly IConfiguration configuration;
 
-        public ProvideController(IMapper mapper, IConfiguration config, IHealthCheckService healthCheck)
+        public ProvideController(IMapper mapper, IConfiguration config)
         {
             this.orderMapper = mapper;
-            this.healthCheckService = healthCheck;
             this.configuration = config;
         }
 
@@ -32,23 +31,13 @@ namespace Kfzteile24.SalesOrderEcpProvider.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] EcpOrderDto orderData)
         {
-            var healthChecksResult = RunHealthChecks().Result;
-
-            if (healthChecksResult.StatusCode != StatusCodes.Status200OK)
-                return BadRequest(healthChecksResult.Value);
-
             var order = this.orderMapper.MapFomDedicated(orderData);
 
             var httpClient = new HttpClient();
 
             var stringContent = new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json");
 
-            //var uri = this.configuration["SOP_API_URL"];
-            //var uri = this.configuration.GetValue<string>("SOP_API_URL");
             var uri = Environment.GetEnvironmentVariable("SOP_API_URL");
-
-            if (uri == null)
-                return new ObjectResult("uri not created");
 
             var responseMessage = await httpClient.PostAsync(new Uri(uri), stringContent);
 
@@ -58,31 +47,6 @@ namespace Kfzteile24.SalesOrderEcpProvider.Controllers
             }
 
             return BadRequest(responseMessage.ReasonPhrase);
-        }       
-
-        private async Task<ObjectResult> RunHealthChecks()
-        {
-            var statusCode = StatusCodes.Status200OK;
-            var errors = new List<string>();
-
-            CompositeHealthCheckResult healthCheckResult = await healthCheckService.CheckHealthAsync();
-
-            // results includes both the good and bad descriptions - filter good ones out
-            var failureNotes = healthCheckResult.Results.Where(r => r.Value.CheckStatus != CheckStatus.Healthy);
-
-            if (failureNotes.Any())
-            {
-                var failedHealthCheckDescriptions = failureNotes.Select(fn => $"{fn.Key} -> {fn.Value.Description}" ).ToList();
-
-                // return a 500 with object result containing the error descriptions of the health check(s)
-                statusCode = StatusCodes.Status500InternalServerError;
-                errors = failedHealthCheckDescriptions;
-            }
-
-            return new ObjectResult(new { HealthCheckErrors = errors })
-            {
-                StatusCode = statusCode
-            };
         }
     }
 }

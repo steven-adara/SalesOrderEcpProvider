@@ -14,6 +14,10 @@ FROM build AS publish
 RUN dotnet publish -c Release -o /app
 
 FROM base AS final
+ARG SOP_API_URL="http://192.168.99.101:5000/api/import"
+ARG SOP_API_HC_URL="http://192.168.99.101:5000/hc"
+ENV SOP_API_URL=$SOP_API_URL
+ENV SOP_API_HC_URL=$SOP_API_HC_URL
 WORKDIR /app
 EXPOSE 8080
 COPY --from=publish /app .

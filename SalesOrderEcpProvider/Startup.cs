@@ -28,9 +28,7 @@ namespace Kfzteile24.SalesOrderEcpProvider
         {
             services.AddHealthChecks(checks =>
             {
-                //checks.AddUrlCheck(Environment.GetEnvironmentVariable("SOP_API_URL"));
-                checks.AddUrlCheck("http://localhost:50419/api/import");
-                //checks.AddUrlCheck("https://github.com");
+                checks.AddUrlCheck(Environment.GetEnvironmentVariable("SOP_API_HC_URL"));
                 // to be extended with cutomized healthchecks here
             });
 
