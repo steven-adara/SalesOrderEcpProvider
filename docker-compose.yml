@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  salesorderecpprovider:
+    image: salesorderecpprovider
+    build:
+      context: .
+      dockerfile: SalesOrderEcpProvider/Dockerfile
