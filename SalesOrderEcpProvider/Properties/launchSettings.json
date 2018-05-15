@@ -13,8 +13,8 @@
       "launchBrowser": true,
       "launchUrl": "api/provide",
       "environmentVariables": {
-        "SOP_API_URL": "http://192.168.99.101:5000/api/import",
-        "SOP_API_HC_URL": "http://192.168.99.101:5000/hc"
+        "SOP_API_URL": "http://localhost:50419/api/import",
+        "SOP_API_HC_URL": "http://localhost:50419/hc"
       }
     },
     "SalesOrderEcpProvider": {
