@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Kfzteile24.SalesOrderEcpProvider.Helper;
-using Kfzteile24.SalesOrderEcpProvider.Types;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.HealthChecks;
+using Prometheus;
 
 namespace Kfzteile24.SalesOrderEcpProvider
 {
@@ -46,6 +43,8 @@ namespace Kfzteile24.SalesOrderEcpProvider
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMetricServer();
 
             app.UseMvc();
         }

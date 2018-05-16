@@ -18,7 +18,6 @@ namespace Kfzteile24.SalesOrderEcpProvider.Controllers
     public class ProvideController : Controller
     {
         private readonly IMapper orderMapper;
-        private readonly IHealthCheckService healthCheckService;
         private readonly IConfiguration configuration;
 
         public ProvideController(IMapper mapper, IConfiguration config)
