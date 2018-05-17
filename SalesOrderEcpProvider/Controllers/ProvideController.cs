@@ -14,13 +14,13 @@ using System.Collections.Generic;
 
 namespace Kfzteile24.SalesOrderEcpProvider.Controllers
 {
-    [Route("api/provide")]
-    public class ProvideController : Controller
+    [Route("api/ecp-sales-orders")]
+    public class EcpSalesOrderController : Controller
     {
         private readonly IMapper orderMapper;
         private readonly IConfiguration configuration;
 
-        public ProvideController(IMapper mapper, IConfiguration config)
+        public EcpSalesOrderController(IMapper mapper, IConfiguration config)
         {
             this.orderMapper = mapper;
             this.configuration = config;
