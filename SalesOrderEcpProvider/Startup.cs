@@ -24,9 +24,11 @@ namespace Kfzteile24.SalesOrderEcpProvider
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<DefaultSelfCheck>();
+
             services.AddHealthChecks(checks =>
             {
-                checks.AddUrlCheck(Environment.GetEnvironmentVariable("SOP_API_HC_URL"));
+                checks.AddCheck<DefaultSelfCheck>("Self", TimeSpan.Zero);
                 // to be extended with cutomized healthchecks here
             });
 

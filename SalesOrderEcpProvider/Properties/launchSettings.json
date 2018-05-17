@@ -11,16 +11,15 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/sales-order",
+      "launchUrl": "api/ecp-sales-order",
       "environmentVariables": {
-        "SOP_API_URL": "http://localhost:50419/api/sales-orders",
-        "SOP_API_HC_URL": "http://localhost:50419/hc"
+        "SOP_API_URL": "http://localhost:50419/api/sales-orders"
       }
     },
     "SalesOrderEcpProvider": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/sales-order",
+      "launchUrl": "api/ecp-sales-order",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
