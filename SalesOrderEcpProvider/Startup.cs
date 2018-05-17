@@ -8,6 +8,7 @@ using Kfzteile24.SalesOrderEcpProvider.Helper;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.HealthChecks;
 using Prometheus;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Kfzteile24.SalesOrderEcpProvider
 {
@@ -31,6 +32,11 @@ namespace Kfzteile24.SalesOrderEcpProvider
 
             services.AddMvc();
 
+            services.AddSwaggerGen(sw =>
+            {
+                sw.SwaggerDoc("v2", new Info { Title = "Sales order provider for ECP shop", Version = "v1" } );
+            });
+
             var serviceProvider = new AutofacServiceProvider(BuildServiceContainer(services));
 
             return serviceProvider;
@@ -45,6 +51,11 @@ namespace Kfzteile24.SalesOrderEcpProvider
             }
 
             app.UseMetricServer();
+            app.UseSwagger();
+            app.UseSwaggerUI(sw =>
+            {
+                sw.SwaggerEndpoint("/swagger/v2/swagger.json", "My API V1");
+            });
 
             app.UseMvc();
         }
