@@ -9,6 +9,7 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.HealthChecks;
 using Prometheus;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Kfzteile24.SalesOrderEcpProvider
 {
@@ -32,7 +33,10 @@ namespace Kfzteile24.SalesOrderEcpProvider
                 // to be extended with cutomized healthchecks here
             });
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(GlobalExceptionHandlingAttribute));
+            });
 
             services.AddSwaggerGen(sw =>
             {
@@ -66,6 +70,7 @@ namespace Kfzteile24.SalesOrderEcpProvider
         {
             var cb = new ContainerBuilder();
             cb.RegisterType<OrderMapper>().As<IMapper>();
+            cb.RegisterType<GlobalExceptionHandlingAttribute>().As<ExceptionFilterAttribute>();
 
             cb.Populate(serviceDescriptors);
             return cb.Build();
