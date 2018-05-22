@@ -36,7 +36,7 @@ namespace Kfzteile24.SalesOrderEcpProvider.Controllers
 
             var stringContent = new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json");
 
-            var uri = Environment.GetEnvironmentVariable("SALES_ORDER_ECP_PROVIDER_SALES_ORDER_API_ADDRESS");
+            var uri = Environment.GetEnvironmentVariable("SALES_ORDER_ECP_PROVIDER_SALES_ORDER_API_URL") + configuration["SalesOrderApiPostRoute"];
 
             var responseMessage = await httpClient.PostAsync(new Uri(uri), stringContent);
 

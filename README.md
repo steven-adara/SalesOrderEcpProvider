@@ -4,7 +4,7 @@ The sales order ECP provider is an anti corruption layer for importing sales ord
 
 ## Environment Variables
 ```
-SALES_ORDER_ECP_PROVIDER_SALES_ORDER_API_ADDRESS
+SALES_ORDER_ECP_PROVIDER_SALES_ORDER_API_URL
 ```
 
 ## Health and Monitoring endpoints
