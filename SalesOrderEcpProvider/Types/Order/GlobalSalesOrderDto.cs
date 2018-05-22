@@ -8,7 +8,6 @@ namespace Kfzteile24.SalesOrderEcpProvider.Types
     // current used order file (*.csv)
     public class GlobalSalesOrderDto
     {
-        public int Id { get; set; }
         public string OrderNumber { get; set; }
         public DateTime OrderDateTime { get; set; }
         public string InvoiceFirstName { get; set; }
