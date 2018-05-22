@@ -13,7 +13,7 @@
       "launchBrowser": true,
       "launchUrl": "api/ecp-sales-order",
       "environmentVariables": {
-        "SOP_API_URL": "http://localhost:50419/api/sales-orders"
+        "SALES_ORDER_ECP_PROVIDER_SALES_ORDER_API_ADDRESS": "http://localhost:50419/api/sales-orders"
       }
     },
     "SalesOrderEcpProvider": {
