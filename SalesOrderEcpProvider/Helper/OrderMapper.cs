@@ -7,9 +7,9 @@ namespace Kfzteile24.SalesOrderEcpProvider.Helper
 {
     public class OrderMapper : IMapper
     {
-        public UniversalSalesOrder MapFomDedicated(EcpOrderDto dedicatedOrder)
+        public GlobalSalesOrderDto MapFomDedicated(EcpSalesOrderDto dedicatedOrder)
         {
-            return new UniversalSalesOrder
+            return new GlobalSalesOrderDto
             {
                 OrderNumber = dedicatedOrder.order_header.order_number,
                 OrderDateTime = DateTime.ParseExact(dedicatedOrder.order_header.order_datetime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture),
@@ -19,11 +19,11 @@ namespace Kfzteile24.SalesOrderEcpProvider.Helper
             };
         }
 
-        private List<UniversalSalesOrderItem> MapItem(List<OrderItem> dtoItems)
+        private List<GlobalSalesOrderItemDto> MapItem(List<OrderItem> dtoItems)
         {
-            var items = new List<UniversalSalesOrderItem>();
+            var items = new List<GlobalSalesOrderItemDto>();
 
-            dtoItems.ForEach(item => items.Add(new UniversalSalesOrderItem
+            dtoItems.ForEach(item => items.Add(new GlobalSalesOrderItemDto
             {
                 Description = item.sku
             }));

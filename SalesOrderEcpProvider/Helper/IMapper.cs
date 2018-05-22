@@ -8,6 +8,6 @@ namespace Kfzteile24.SalesOrderEcpProvider.Helper
 {
     public interface IMapper
     {
-        UniversalSalesOrder MapFomDedicated(EcpOrderDto dedicatedOrder);
+        GlobalSalesOrderDto MapFomDedicated(EcpSalesOrderDto dedicatedOrder);
     }
 }

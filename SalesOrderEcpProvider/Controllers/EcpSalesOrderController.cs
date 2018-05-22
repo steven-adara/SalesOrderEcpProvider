@@ -28,7 +28,7 @@ namespace Kfzteile24.SalesOrderEcpProvider.Controllers
 
         // POST api/provide
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] EcpOrderDto orderData)
+        public async Task<IActionResult> Post([FromBody] EcpSalesOrderDto orderData)
         {
             var order = this.orderMapper.MapFomDedicated(orderData);
 

@@ -382,7 +382,7 @@ namespace Kfzteile24.SalesOrderEcpProvider.Types
         public List<LogisticalItem> logistical_items { get; set; }
     }
 
-    public class EcpOrderDto
+    public class EcpSalesOrderDto
     {
         public string version { get; set; }
         public OrderHeader order_header { get; set; }
