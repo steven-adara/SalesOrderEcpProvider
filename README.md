@@ -17,8 +17,6 @@ SALES_ORDER_ECP_PROVIDER_SALES_ORDER_API_ADDRESS
 ## API Documentation
 The API is documented using swagger. Docs can be found at
 ```
-/path/to/swagger/api
-
 <host>:<port>
 /swagger
 ``` 
