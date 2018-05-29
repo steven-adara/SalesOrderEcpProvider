@@ -9,7 +9,6 @@ SALES_ORDER_ECP_PROVIDER_SALES_ORDER_API_URL
 
 ## Health and Monitoring endpoints
 ```
-<host>:<port>
 /hc
 /metrics
 ```
@@ -17,7 +16,6 @@ SALES_ORDER_ECP_PROVIDER_SALES_ORDER_API_URL
 ## API Documentation
 The API is documented using swagger. Docs can be found at
 ```
-<host>:<port>
 /swagger
 ``` 
  
