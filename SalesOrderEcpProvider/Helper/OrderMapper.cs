@@ -49,7 +49,8 @@ namespace Kfzteile24.SalesOrderEcpProvider.Helper
                     Street3 = dedicatedOrder.order_header.billing_address.street3,
                     ZipCode = dedicatedOrder.order_header.billing_address.zip_code,
                     City = dedicatedOrder.order_header.billing_address.city,
-                    PhoneNumber = dedicatedOrder.order_header.billing_address.phone_number
+                    PhoneNumber = dedicatedOrder.order_header.billing_address.phone_number,
+                    Type = AddressType.Billing
                 },
                 ShippingAddresses = MapShippingAddresses(dedicatedOrder.order_header.shipping_addresses),
                 OrderItems = MapItems(dedicatedOrder.order_rows)
@@ -69,7 +70,8 @@ namespace Kfzteile24.SalesOrderEcpProvider.Helper
                 Street3 = item.street3,
                 ZipCode = item.zip_code,
                 City = item.city,
-                PhoneNumber = item.phone_number
+                PhoneNumber = item.phone_number,
+                Type = AddressType.Shipping
             }));
 
             return items;
