@@ -19,11 +19,16 @@ namespace Kfzteile24.SalesOrderEcpProvider.Controllers
     {
         private readonly IMapper orderMapper;
         private readonly IConfiguration configuration;
+        private readonly HttpClient httpClient;
 
         public EcpSalesOrderController(IMapper mapper, IConfiguration config)
         {
             this.orderMapper = mapper;
             this.configuration = config;
+            this.httpClient = new HttpClient
+            {
+                BaseAddress = new Uri(Environment.GetEnvironmentVariable("SALES_ORDER_ECP_PROVIDER_SALES_ORDER_API_URL"))
+            };
         }
 
         // POST api/provide
@@ -31,8 +36,6 @@ namespace Kfzteile24.SalesOrderEcpProvider.Controllers
         public async Task<IActionResult> Post([FromBody] EcpSalesOrderDto orderData)
         {
             var order = this.orderMapper.MapFomDedicated(orderData);
-
-            var httpClient = new HttpClient();
 
             var stringContent = new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json");
 
