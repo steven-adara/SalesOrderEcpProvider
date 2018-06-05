@@ -85,6 +85,7 @@ namespace Kfzteile24.SalesOrderEcpProvider.Types
         public string street3 { get; set; }
         public string city { get; set; }
         public string zip_code { get; set; }
+        public string country_code { get; set; }
     }
 
     public class ShippingAddress

@@ -50,6 +50,7 @@ namespace Kfzteile24.SalesOrderEcpProvider.Helper
                     ZipCode = dedicatedOrder.order_header.billing_address.zip_code,
                     City = dedicatedOrder.order_header.billing_address.city,
                     PhoneNumber = dedicatedOrder.order_header.billing_address.phone_number,
+                    CountryCode = dedicatedOrder.order_header.billing_address.country_code,
                     Type = AddressType.Billing
                 },
                 ShippingAddresses = MapShippingAddresses(dedicatedOrder.order_header.shipping_addresses),
@@ -71,6 +72,7 @@ namespace Kfzteile24.SalesOrderEcpProvider.Helper
                 ZipCode = item.zip_code,
                 City = item.city,
                 PhoneNumber = item.phone_number,
+                CountryCode = item.country_code,
                 Type = AddressType.Shipping
             }));
 
