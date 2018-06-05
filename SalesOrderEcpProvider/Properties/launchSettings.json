@@ -1,0 +1,29 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:56774/",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "api/ecp-sales-order",
+      "environmentVariables": {
+        "SALES_ORDER_ECP_PROVIDER_SALES_ORDER_API_URL": "http://localhost:50419"
+      }
+    },
+    "SalesOrderEcpProvider": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "api/ecp-sales-order",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:56775/"
+    }
+  }
+}
