@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesOrderEcpProvider", "SalesOrderEcpProvider\SalesOrderEcpProvider.csproj", "{3998102E-5969-4F43-990E-92B32EC0C0A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalesOrderEcpProvider", "SalesOrderEcpProvider\SalesOrderEcpProvider.csproj", "{3998102E-5969-4F43-990E-92B32EC0C0A9}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{15E4C4A5-0191-4957-86A8-5A08E224B990}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D2F9ED97-651F-4974-B9F0-CE71F343A98D}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

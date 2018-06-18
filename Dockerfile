@@ -3,8 +3,8 @@ WORKDIR /app
 
 FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
-COPY ../SalesOrderEcpProvider.sln ./
-COPY SalesOrderEcpProvider.csproj SalesOrderEcpProvider/
+COPY SalesOrderEcpProvider.sln ./
+COPY SalesOrderEcpProvider/SalesOrderEcpProvider.csproj SalesOrderEcpProvider/
 RUN dotnet restore -nowarn:msb3202,nu1503
 COPY . .
 WORKDIR /src/SalesOrderEcpProvider
