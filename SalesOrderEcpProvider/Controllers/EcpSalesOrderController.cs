@@ -8,9 +8,7 @@ using System.Net.Http;
 using Kfzteile24.SalesOrderEcpProvider.Types;
 using Kfzteile24.SalesOrderEcpProvider.Helper;
 using System.Threading.Tasks;
-using Microsoft.Extensions.HealthChecks;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 
 namespace Kfzteile24.SalesOrderEcpProvider.Controllers
 {
@@ -20,8 +18,11 @@ namespace Kfzteile24.SalesOrderEcpProvider.Controllers
         private readonly IMapper orderMapper;
         private readonly IConfiguration configuration;
         private readonly HttpClient httpClient;
+        private readonly ILogger<EcpSalesOrderController> appLogger;
 
-        public EcpSalesOrderController(IMapper mapper, IConfiguration config)
+        private string resultMessage;
+
+        public EcpSalesOrderController(IMapper mapper, ILogger<EcpSalesOrderController> logger, IConfiguration config)
         {
             this.orderMapper = mapper;
             this.configuration = config;
@@ -29,12 +30,15 @@ namespace Kfzteile24.SalesOrderEcpProvider.Controllers
             {
                 BaseAddress = new Uri(Environment.GetEnvironmentVariable("SALES_ORDER_ECP_PROVIDER_SALES_ORDER_API_URL"))
             };
+            this.appLogger = logger;
         }
 
         // POST api/provide
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] EcpSalesOrderDto orderData)
         {
+            this.appLogger.LogInformation($"start processing sales order number: {orderData.order_header.order_number}");
+
             var order = this.orderMapper.MapFomDedicated(orderData);
 
             var stringContent = new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json");
@@ -45,10 +49,14 @@ namespace Kfzteile24.SalesOrderEcpProvider.Controllers
 
             if ((int)responseMessage.StatusCode < 400)
             {
-                return new ObjectResult("Done!");
+                resultMessage = "successfully imported!";
+                this.appLogger.LogInformation(resultMessage);
+                return Ok(resultMessage);
             }
 
-            return BadRequest(responseMessage.ReasonPhrase);
+            resultMessage = $"error on importing!\n\n{responseMessage.Content.ReadAsStringAsync().Result}";
+            this.appLogger.LogError(resultMessage);
+            return BadRequest(resultMessage);
         }
     }
 }
